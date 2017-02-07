@@ -8,17 +8,59 @@
   filter: blur(3px);
   position:fixed;
   width: 100%;
-  height: 500px;
+  height: 400px;
   background-position:center;
   top:0;
   left:0;
   z-index:-1;
   }
 
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.bio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#bio-content {
+  font-size: 40px;
+}
+
+#homepage-header {
+  font-size: 70px;
+
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .background-content {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.navbar {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.links ul li {
+  list-style-type: none;
+  display: inline-block;
+  padding-left: 30px;
+  font-size: 30px;
+}
+.links ul li a{
+  color: black;
 }
 
 #logo {
@@ -27,4 +69,22 @@
 
 .header {
   height: 500px;
+}
+
+hr {
+  width: 700px;
+  border-color: black !important;
+}
+
+#getstarted {
+  width: 300px;
+  background-color: black;
+  color: white;
+}
+
+.button {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
