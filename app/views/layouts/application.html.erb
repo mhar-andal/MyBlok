@@ -6,16 +6,38 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
   </head>
 
   <body>
     <div class="header">
       <div class="background"></div>
       <div class="background-content">
-        <img id="logo" src="/assets/mybloknew.png" />
+        <a href="/"><img id="logo" src="/assets/mybloknew.png" /></a>
       </div>
+      <hr>
+      <div class="bio">
+          <span id="bio-content">Identity Securtity Using Blockchain</span>
+      </div>
+      <% if @homepage && logged_in == false %>
+      <div class="button">
+        <a href="/users/new"><button id="getstarted" type="button" class="btn btn-secondary btn-lg">GET STARTED</button></a>
+      </div>
+      <% end %>
+      <% if logged_in %>
+      <div class="navbar">
+        <div class="links">
+          <ul>
+            <li><a href="/">Manage MyBlok</a></li>
+            <li><a href="/">Logout</a></li>
+          </uL>
+        </div>
+      </div>
+      <% end %>
     </div>
+
     <%= yield %>
+
   </body>
 </html>
