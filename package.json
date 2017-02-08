@@ -1,8 +1,9 @@
 {
   "name": "something",
-  "dependencies" : {
+  "dependencies": {
     "browserify": "~10.2.4",
     "browserify-incremental": "^3.0.1",
+    "openpgp": "^2.3.6",
     "web3": "^0.14.0"
   },
   "license": "MIT",
