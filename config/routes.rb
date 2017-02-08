@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   post '/sessions' => "sessions#create"
   delete '/sessions' => "sessions#destroy"
   get '/contract/new' => "contract#index"
+  get '/sessions/login' => "sessions#new"
+  get '/contract/config' => "contract#config"
 end

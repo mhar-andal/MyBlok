@@ -4,14 +4,14 @@ console.log(openpgp)
 var openpgp = require('openpgp'); // use as CommonJS, AMD, ES6 module or via window.openpgp
 openpgp.config.aead_protect = true // activate fast AES-GCM mode (not yet OpenPGP standard)
 
-var Person = function (fullname, openpgp) {
+var Person = function (fullname, openpgp, password) {
   this.openpgp = openpgp
   this.fullname = fullname;
 
   this.options = {
       userIds: [{ name: this.fullname}], // multiple user IDs
       numBits: 2048,                                            // RSA key size
-      passphrase: 'super long and hard to guess secret'         // protects the private key
+      passphrase: password         // protects the private key
   };
 
   this.creditCardInfo = {
@@ -31,7 +31,7 @@ Person.prototype.genkey = function() {
 
 Person.prototype.encrypt = function () {
   var privateKey = this.openpgp.key.readArmored(this.privkey)
-  passphrase = "super long and hard to guess secret"
+  passphrase = this.passphrase
   var privKeyDE = privateKey;
   privKeyDE.keys[0].decrypt(passphrase);
   console.log(privKeyDE)
@@ -74,17 +74,18 @@ Person.prototype.decrypt = function(encrypted) {
 // person.genkey();
 // var person2;
 $(document).ready(function(){
-    $("#name").on("submit", function(e){
+    $("#person").on("submit", function(e){
       e.preventDefault();
       var fullname = this.elements["fullname"].value
       var passphrase = this.elements["passphrase"].value
-      var person = new Person(fullname, openpgp);
+      var person = new Person(fullname, openpgp, passphrase);
       person.genkey();
-      console.log(person);
-      $("#getkeys").on("submit", function(e) {
-        e.preventDefault();
-        $(".key").replaceWith("<p>" + person.privkey + "</p>")
-      })
+      setTimeout(function(){
+        $(".form").replaceWith(
+          "<div class='writedown'><h1>Please write down your PGP Key somewhere safe!</h1></div>" +
+        "<div class='writedown'><center><textarea style='width:300px; height:400px;'>" + person.privkey + "</textarea></center></div>")
+        $(".mainform").append("<a href='/contract/config'>AND CONTINUE ONNNNNN!</a>")
+      }, 6000);
     })
 
 

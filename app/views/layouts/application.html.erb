@@ -22,7 +22,10 @@
       </div>
       <% if @homepage && logged_in == false %>
       <div class="button">
-        <a href="/users/new"><button id="getstarted" type="button" class="btn btn-secondary btn-lg">GET STARTED</button></a>
+        <a href="/contract/new"><button id="getstarted" type="button" class="btn btn-secondary btn-lg">GET STARTED</button></a>
+      </div>
+      <div class="button">
+        <a href="/sessions/login"><button id="getstarted" type="button" class="btn btn-secondary btn-lg">EXISTING USER</button></a>
       </div>
       <% end %>
       <% if logged_in %>
