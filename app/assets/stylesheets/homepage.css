@@ -6,7 +6,7 @@
   -o-filter: blur(3px);
   -ms-filter: blur(3px);
   filter: blur(3px);
-  position:fixed;
+  position: absolute;
   width: 100%;
   height: 400px;
   background-position:center;
@@ -26,12 +26,35 @@ body {
 }
 
 #bio-content {
-  font-size: 40px;
+  font-size: 40px;a
 }
 
 #homepage-header {
   font-size: 70px;
 
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top:500px;
+}
+
+.logosplit {
+  position: absolute;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.horicenter {
+  margin-top: 40px;
+  font-size: 30px;
+  text-align: center;
 }
 
 .container {
