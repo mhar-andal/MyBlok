@@ -1,0 +1,31 @@
+
+<form class="form" action="/users" method="post">
+   <fieldset>
+    <legend>Site Password and Info:</legend>
+
+    <p class="site_name">
+        <input type="text" name="user[site_name]" id="site_name" required>
+        <label for="site_name">Site Name</label>
+    </p>
+
+    <p class="site_address">
+        <input type="text" name="user[site_address]" id="site_address" required>
+        <label for="site_address">Site Address</label>
+    </p>
+
+    <p class="login">
+        <input type="text" name="user[login]" id="login" required>
+        <label for="login">Login</label>
+    </p>
+
+    <p class="password">
+        <input type="password" name="user[password]" id="password" required>
+        <label for="password">Password</label>
+    </p>
+
+    <p class="submit">
+        <input id="save" type="submit" value="Save">
+    </p>
+
+   </fieldset>
+</form>

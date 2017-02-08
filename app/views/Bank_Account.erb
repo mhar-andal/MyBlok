@@ -1,0 +1,30 @@
+<form class="form" action="/users" method="post">
+   <fieldset>
+    <legend>Bank Account Info:</legend>
+
+    <p class="bank_name">
+        <input type="text" name="user[bank_name]" id="bank_name" required>
+        <label for="bank_name">Bank Name</label>
+    </p>
+
+    <p class="account_type">
+        <input type="text" name="user[account_type]" id="account_type" required>
+        <label for="account_type">Account Type</label>
+    </p>
+
+    <p class="account_number">
+        <input type="text" name="user[account_number]" id="account_number" required>
+        <label for="account_number">Account Number</label>
+    </p>
+
+    <p class="routing_number">
+        <input type="text" name="user[routing_number]" id="routing_number" required>
+        <label for="routing_number">Routing Number</label>
+    </p>
+
+    <p class="submit">
+        <input id="save" type="submit" value="Save">
+    </p>
+
+   </fieldset>
+</form>
