@@ -1,0 +1,25 @@
+<form class="form" action="/users" method="post">
+   <fieldset>
+    <legend>ID Card:</legend>
+
+    <p class="id_name">
+        <input type="text" name="user[id_name]" id="id_name" required>
+        <label for="id_name">ID Card Name</label>
+    </p>
+
+    <p class="id_number">
+        <input type="text" name="user[id_number]" id="id_number" required>
+        <label for="id_number">ID Number</label>
+    </p>
+
+    <p class="exp_date">
+        <input type="text" name="user[exp_date]" id="exp_date" required>
+        <label for="exp_date">Expiration Date</label>
+    </p>
+
+    <p class="submit">
+        <input id="save" type="submit" value="Save">
+    </p>
+
+   </fieldset>
+</form>

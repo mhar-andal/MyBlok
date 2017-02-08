@@ -1,0 +1,42 @@
+
+<form class="form" action="/users" method="post">
+   <fieldset>
+    <legend>Credit Card:</legend>
+
+    <p class="card_name">
+        <input type="text" name="user[card_name]" id="card_name" required>
+        <label for="card_name">Card Name</label>
+    </p>
+
+    <p class="card_type">
+        <input type="text" name="user[card_type]" id="card_type" required>
+        <label for="card_type">Card Name</label>
+    </p>
+
+    <p class="name_on_card">
+        <input type="text" name="user[name_on_card]" id="name_on_card" required>
+        <label for="name_on_card">Name On Card</label>
+    </p>
+
+
+    <p class="card_number">
+        <input type="text" name="user[card_number]" id="card_number" required>
+        <label for="card_number">Card Number</label>
+    </p>
+
+    <p class="expiration_date">
+        <input type="text" name="user[expiration_date]" id="expiration_date" required>
+        <label for="expiration_date">Expiration Date</label>
+    </p>
+
+    <p class="pin">
+        <input type="text" name="user[pin]" id="pin" required>
+        <label for="pin">Pin</label>
+    </p>
+
+    <p class="submit">
+        <input id="save" type="submit" value="Save">
+    </p>
+
+   </fieldset>
+</form>
