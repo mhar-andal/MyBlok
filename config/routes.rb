@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   get '/contract' => "contract#index"
   get '/register' => "users#new"
   get '/keys' => "users#keys"
+  post '/keys' => "users#insert_publickey"
   get '/sessions/login' => "sessions#new"
   get '/contract/config' => "contract#config"
   get '/loggedin' => "homepage#loggedin"
+  get '/setupblock' => "users#newblock"
 end
