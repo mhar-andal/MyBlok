@@ -37,7 +37,15 @@ class UsersController < ApplicationController
   end
 
   def newblock
+    @user = current_user
     render(:layout => "layouts/loggedin")
+  end
+
+  def ID
+    @user = current_user
+    p @user.block_id
+    @user.block_id =  params["data"].to_i
+    p @user.block_id
   end
 
   def insert_publickey

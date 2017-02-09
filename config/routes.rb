@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/contract/config' => "contract#config"
   get '/loggedin' => "homepage#loggedin"
   get "/users/blok", to: "users#blok", as: "blok"
+  post "/users/ID" , to: "users#ID"
   resources :users, except: [:index, :edit, :update, :destroy]
   get '/setupblock' => "users#newblock"
 end

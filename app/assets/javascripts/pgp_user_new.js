@@ -16,11 +16,10 @@ $(document).ready(function(){
           $(".errors").replaceWith("<div class='errors'><span></span></div>");
           $("#passphrase").replaceWith("<div id='passphrase'><center><h1>Private Key: </h1>" +
           "<textarea id='textarea'>" + keys.privkey + "</textarea></center></div>")
-          var pgpkey = $("#textarea").val()
           $.ajax({
             method: 'post',
             url: '/keys',
-            data: {key: pgpkey}
+            data: {key: keys.pubkey}
           })
           $("#passphrase").append("<center><button id='setupblock' type='submit' class='btn btn-default'>Setup Your Blok!</button></center>")
           $("#setupblock").on("click", function(e){
