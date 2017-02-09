@@ -57,33 +57,37 @@ $(document).ready(function(){
     event.preventDefault();
     var accountObj = new Account($("#bank-sig").val(), $("#bank_name").val(), $("#account_number").val(), $("#routing_number").val());
     var parsed = JSON.stringify(accountObj);
-    contract.newDataLocker(accountObj.dataType, accountObj.signifier, parsed,18, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
+    var personalID = $(".personal-id").html();
+    contract.newDataLocker(accountObj.dataType, accountObj.signifier, parsed,personalID, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
   });
 
   $("#web-info").on("submit",function(event){
     event.preventDefault();
     var loginObj = new Login($("#site_name").val(),$("#site_address").val(),$("#login").val(),$("#password").val())
     var stringified = JSON.stringify(loginObj);
-    contract.newDataLocker(loginObj.siteName,loginObj.url, stringified, 18, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
+    var personalID = $(".personal-id").html();
+    contract.newDataLocker(loginObj.siteName,loginObj.url, stringified, personalID, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
   });
 
   $("#ID-info").on("submit",function(event){
     event.preventDefault();
     var IDObj = new IDCard($("#id_sig").val(), $("#id_name").val(), $("#id_number").val(),$("#exp_date").val())
     var stringified = JSON.stringify(IDObj);
-    contract.newDataLocker(IDObj.dataType,IDObj.signifier, stringified, 18, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
+    var personalID = $(".personal-id").html();
+    contract.newDataLocker(IDObj.dataType,IDObj.signifier, stringified, personalID, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
   });
 
   $("#creditcard").on("submit", function(event){
     event.preventDefault();
     var cardObj = new Card($("#card_sig").val(), $("#issuing_bank_name").val(),$("#name_on_card").val(),$("#card_type").val(),$("#card_number").val(),$("#security_code").val(),$("#expiration_date").val());
     var stringified = JSON.stringify(cardObj);
-    contract.newDataLocker(cardObj.dataType, cardObj.signifier, stringified,18,{from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
+    var personalID = $(".personal-id").html();
+    contract.newDataLocker(cardObj.dataType, cardObj.signifier, stringified,personalID,{from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
   });
 //below is for the index contract page.  It parses the object from the database and holds it as an obj.
   $("#data-retrieval").on("submit", function(event){
     event.preventDefault();
-    var userID = $("#personalID").val();
+    var userID = $(".personal-id").html();
     var lockerID = $("#LockerID").val();
     var object = contract.openLocker(userID, lockerID, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000})
     var parsed = JSON.parse(ETHEREUM_CLIENT.toAscii(object[2]));
@@ -143,6 +147,11 @@ $(document).ready(function(){
       $("#locker-display").append("<p>"+lockerArray[i][0]+". "+ lockerArray[i][1]+ "</p> <p>"+lockerArray[i][2] +"</p><br>");
     }
     $("#locker-display").removeClass("hidden");
+  });
+
+  $("#hide-that-stuff").on("click", function(event){
+    event.preventDefault();
+    $(".pop-up").addClass('hidden');
   });
 
   //Below this line there is the javascript to handle tossing personal info to the blockchain, along with
