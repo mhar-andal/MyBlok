@@ -1,0 +1,139 @@
+<h1 class="header">Please select one type of data to enter</h1>
+<form id="bank-account" class="form" action="/users" method="post">
+   <fieldset>
+    <legend>Bank Account Info:</legend>
+
+    <p class="bank_sig">
+        <input type="text" name="user[signifier]" id="bank-sig" required>
+        <label for="bank_name">What account?</label>
+    </p>
+
+    <p class="bank_name">
+        <input type="text" name="user[bank_name]" id="bank_name" required>
+        <label for="bank_name">Bank Name</label>
+    </p>
+
+    <p class="account_number">
+        <input type="text" name="user[account_number]" id="account_number" required>
+        <label for="account_number">Account Number</label>
+    </p>
+
+    <p class="routing_number">
+        <input type="text" name="user[routing_number]" id="routing_number" required>
+        <label for="routing_number">Routing Number</label>
+    </p>
+
+    <p class="submit">
+        <input id="save" type="submit" value="Save">
+    </p>
+
+   </fieldset>
+</form>
+
+<form id="web-info" class="form" action="/users" method="post">
+   <fieldset>
+    <legend>Site Password and Info:</legend>
+
+    <p class="site_name">
+        <input type="text" name="user[site_name]" id="site_name" required>
+        <label for="site_name">Site Name</label>
+    </p>
+
+    <p class="site_address">
+        <input type="text" name="user[site_address]" id="site_address" required>
+        <label for="site_address">Site Address</label>
+    </p>
+
+    <p class="login">
+        <input type="text" name="user[login]" id="login" required>
+        <label for="login">Login</label>
+    </p>
+
+    <p class="password">
+        <input type="password" name="user[password]" id="password" required>
+        <label for="password">Password</label>
+    </p>
+
+    <p class="submit">
+        <input id="save" type="submit" value="Save">
+    </p>
+
+   </fieldset>
+</form>
+
+<form id="ID-info" class="form" action="/users" method="post">
+   <fieldset>
+    <legend>ID Card:</legend>
+
+    <p class="id_name">
+        <input type="text" name="user[id_name]" id="id_name" required>
+        <label for="id_name">ID Card Name</label>
+    </p>
+
+    <p class="id_sig">
+        <input type="text" name="user[id_signifier]" id="id_sig" required>
+        <label for="id_name">Type of ID?</label>
+    </p>
+
+    <p class="id_number">
+        <input type="text" name="user[id_number]" id="id_number" required>
+        <label for="id_number">ID Number</label>
+    </p>
+
+    <p class="exp_date">
+        <input type="text" name="user[exp_date]" id="exp_date" required>
+        <label for="exp_date">Expiration Date</label>
+    </p>
+
+    <p class="submit">
+        <input id="save" type="submit" value="Save">
+    </p>
+
+   </fieldset>
+</form>
+
+<form id="creditcard" class="form" action="/users" method="post">
+   <fieldset>
+    <legend>Credit Card:</legend>
+    <p class="card_sig">
+      <input type="text" name="user[card_signifier]" id="card_sig" required>
+      <label for="card_type">What Card is this?</label>
+    </p>
+
+    <p class="bank_name">
+        <input type="text" name="user[bank_name]" id="issuing_bank_name" required>
+        <label for="card_name">Issuing Bank</label>
+    </p>
+
+    <p class="card_type">
+        <input type="text" name="user[card_type]" id="card_type" required>
+        <label for="card_type">Card Type</label>
+    </p>
+
+    <p class="name_on_card">
+        <input type="text" name="user[name_on_card]" id="name_on_card" required>
+        <label for="name_on_card">Name On Card</label>
+    </p>
+
+
+    <p class="card_number">
+        <input type="text" name="user[card_number]" id="card_number" required>
+        <label for="card_number">Card Number</label>
+    </p>
+
+    <p class="expiration_date">
+        <input type="text" name="user[expiration_date]" id="expiration_date" required>
+        <label for="expiration_date">Expiration Date</label>
+    </p>
+
+    <p class="pin">
+        <input type="text" name="user[pin]" id="security_code" required>
+        <label for="pin">Security Code</label>
+    </p>
+
+    <p class="submit">
+        <input id="save" type="submit" value="Save">
+    </p>
+
+   </fieldset>
+</form>

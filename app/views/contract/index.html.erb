@@ -1,24 +1,24 @@
-<div class="mainform">
-
-  <div class="form">
-    <form id="person">
-      <div class="form-group">
-        <label for="exampleInputEmail1">Full Name</label>
-        <input type="fullname" class="form-control" name="fullname">
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" name="passphrase">
-      </div>
-      <center><button type="submit" class="btn btn-default">Submit</button></center>
-    </form>
-  </div>
+<h1 class="header">Data Retrieval</h1>
 
 
+<form id="data-retrieval" class="form header" action="/users" method="post">
+   <fieldset>
+    <legend>Open Data Locker</legend>
+
+    <p class="personalID">
+        <input type="text" name="locker[personalID]" id="personalID" required>
+        <label for="bank_name">Personal ID</label>
+    </p>
+
+    <p class="LockerID">
+        <input type="text" name="locker[lockerID]" id="LockerID" required>
+        <label for="bank_name">Locker Number</label>
+    </p>
 
 
+    <p class="submit">
+        <input id="save" type="submit" value="Save">
+    </p>
 
-<div class="key">
-
-</div>
-</div>
+   </fieldset>
+</form>

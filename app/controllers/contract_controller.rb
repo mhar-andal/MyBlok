@@ -4,4 +4,9 @@ class ContractController < ApplicationController
 
   def contract
   end
+
+  def store
+
+  end
+
 end
