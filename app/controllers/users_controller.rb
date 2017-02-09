@@ -22,6 +22,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def blok
+    @user = current_user
+    render action: 'blok'
+  end
+
   def show
   end
 
@@ -49,6 +54,7 @@ class UsersController < ApplicationController
       render(:layout => "layouts/loggedin")
     end
   end
+
 
 private
   def user_deets
