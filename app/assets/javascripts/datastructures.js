@@ -86,5 +86,40 @@ $(document).ready(function(){
     var lockerID = $("#LockerID").val();
     var object = contract.openLocker(userID, lockerID, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000})
     var parsed = JSON.parse(ETHEREUM_CLIENT.toAscii(object[2]));
+    if( parsed.dataType === "Credit Card"){
+      $("#Card-display-type").html(parsed.dataType);
+      $("#Card-display-sig").html(parsed.signifier);
+      $("#Card-display-bank").html(parsed.bankName);
+      $("#Card-display-fullName").html(parsed.fullName);
+      $("#Card-display-issuer").html(parsed.cardIssuer);
+      $("#Card-display-number").html(parsed.cardNum);
+      $("#Card-display-securityCode").html(parsed.securityNum);
+      $("#Card-display-expDate").html(parsed.expDate);
+      $("#Card-display").removeClass("hidden");
+    }
+    else if (parsed.dataType === "Website Login"){
+      $("#Login-display-type").html(parsed.dataType);
+      $("#Login-display-siteName").html(parsed.siteName);
+      $("#Login-display-url").html(parsed.url);
+      $("#Login-display-userName").html(parsed.username);
+      $("#Login-display-password").html(parsed.password);
+      $("#Login-display").removeClass("hidden");
+    }
+    else if (parsed.dataType ==="Banking Account"){
+      $("#Account-display-type").html(parsed.dataType);
+      $("#Account-display-sig").html(parsed.signifier);
+      $("#Account-display-name").html(parsed.bankName);
+      $("#Account-display-routing").html(parsed.routingNum);
+      $("#Account-display-account").html(parsed.accountNum);
+      $("#Account-display").removeClass("hidden");
+    }
+    else if (parsed.dataType === "ID card"){
+      $("#ID-display-type").html(parsed.dataType);
+      $("#ID-display-sig").html(parsed.signifier);
+      $("#ID-display-idType").html(parsed.IDType);
+      $("#ID-display-expDate").html(parsed.expDate);
+      $("#ID-display-licNum").html(parsed.licNum);
+      $("#ID-display").removeClass('hidden');
+    }
   })
 });
