@@ -1,4 +1,9 @@
 <div class="container">
+  <% if @error %>
+    <center><h1>Please login to access this page</h1></center>
+  <% end %>
+  <% if current_user != nil %>
+    <% if current_user.public_key == nil %>
   <input id="username" type="hidden" name="current_user" value="ha">
   <div class="row">
     <center><h1>Welcome to MyBlok</h1>
@@ -8,9 +13,9 @@
       <h5>The private key will decrypt your information</h5>
       <h5>It is <strong>important</strong> to write down your passphrase and private key!</h5></center>
     <form id="passphrase">
+      <div class="errors">
+      </div>
       <div class="form-group">
-        <div class="errors">
-        </div>
         <label for="exampleInputPassword1">Enter Passphrase: </label>
         <input id="password" type="password" class="form-control" name="password">
       </div>
@@ -21,5 +26,8 @@
       <center><button id="login" type="submit" class="btn btn-default">Generate Keys</button></center>
     </form>
   </div>
-
+  <% else %>
+    Error: Keys already generated
+  <% end %>
+  <% end %>
 </div>

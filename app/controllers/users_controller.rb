@@ -36,9 +36,22 @@ class UsersController < ApplicationController
   def update
   end
 
+  def newblock
+    render(:layout => "layouts/loggedin")
+  end
+
+  def insert_publickey
+    @user = current_user
+    @user.public_key = params[:key]
+    @user.save
+    p @user.errors
+  end
+
   def keys
     if !logged_in
-      redirect_to(root_path)
+      @error = "Please log in to access this page"
+    else
+      render(:layout => "layouts/loggedin")
     end
   end
 
