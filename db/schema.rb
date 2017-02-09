@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20170206195215) do
     t.string  "username"
     t.string  "password_digest"
     t.integer "block_id"
-    t.string  "public_key"
+    t.text    "public_key"
   end
 
 end
