@@ -22,7 +22,7 @@
       </div>
       <% if @homepage && logged_in == false %>
       <div class="button">
-        <a href="/contract/new"><button id="getstarted" type="button" class="btn btn-secondary btn-lg">GET STARTED</button></a>
+        <a href="/register"><button id="getstarted" type="button" class="btn btn-secondary btn-lg">GET STARTED</button></a>
       </div>
       <div class="button">
         <a href="/sessions/login"><button id="getstarted" type="button" class="btn btn-secondary btn-lg">EXISTING USER</button></a>
@@ -32,8 +32,11 @@
       <div class="navbar">
         <div class="links">
           <ul>
-            <li><a href="/">Manage MyBlok</a></li>
-            <li><a href="/">Logout</a></li>
+            <form action="/sessions" method="post">
+              <input type="hidden" name="_method" value="delete">
+              <input type="submit" value="logout">
+            </form>
+            <center><li><a href="/">Logout</a></li></center>
           </uL>
         </div>
       </div>

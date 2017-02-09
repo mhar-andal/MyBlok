@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   delete '/sessions' => "sessions#destroy"
   get '/contract/store' => "contract#store"
   get '/contract' => "contract#index"
+  get '/register' => "users#new"
+  get '/keys' => "users#keys"
   get '/sessions/login' => "sessions#new"
   get '/contract/config' => "contract#config"
   get '/loggedin' => "homepage#loggedin"

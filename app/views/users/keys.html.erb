@@ -1,0 +1,25 @@
+<div class="container">
+  <input id="username" type="hidden" name="current_user" value="ha">
+  <div class="row">
+    <center><h1>Welcome to MyBlok</h1>
+      <h5>Please enter a 4 or more word passphrase</h5>
+      <h5>This passphrase will generate a public and private key</h5>
+      <h5>The public key will encrypt your information</h5>
+      <h5>The private key will decrypt your information</h5>
+      <h5>It is <strong>important</strong> to write down your passphrase and private key!</h5></center>
+    <form id="passphrase">
+      <div class="form-group">
+        <div class="errors">
+        </div>
+        <label for="exampleInputPassword1">Enter Passphrase: </label>
+        <input id="password" type="password" class="form-control" name="password">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Confirm Passphrase: </label>
+        <input id="confirm" type="password" class="form-control" name="confirm_password">
+      </div>
+      <center><button id="login" type="submit" class="btn btn-default">Generate Keys</button></center>
+    </form>
+  </div>
+
+</div>

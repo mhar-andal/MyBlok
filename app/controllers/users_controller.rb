@@ -6,12 +6,18 @@ class UsersController < ApplicationController
   end
 
   def create
-    p user_deets
-    @user = User.new(user_deets)
-    if @user.save
-      login_user
-      redirect_to(root_path)
+    if params[:user][:password] == params[:users][:confirm_password]
+      @user = User.new(user_deets)
+      if @user.save
+        login_user
+        redirect_to "/keys"
+      else
+        render action: 'new'
+      end
     else
+      @user = User.new(username: params[:user][:username])
+      @user.save
+      @user.errors.messages[:password] = ["must match"]
       render action: 'new'
     end
   end
@@ -25,9 +31,14 @@ class UsersController < ApplicationController
   def update
   end
 
+  def keys
+    if !logged_in
+      redirect_to(root_path)
+    end
+  end
 
 private
   def user_deets
-      params.require(:user).permit(:email, :password)
+      params.require(:user).permit(:username, :password)
   end
 end
