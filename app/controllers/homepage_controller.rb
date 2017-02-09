@@ -1,12 +1,12 @@
 class HomepageController < ApplicationController
+  include SessionsHelper
   def index
-    @homepage = true
-    # render(:layout => "layouts/loggedin")
+    if logged_in
+      render "homepage/loggedin", :layout => "layouts/loggedin"
+    end
   end
 
   def loggedin
     render(:layout => "layouts/loggedin")
   end
-
-  
 end
