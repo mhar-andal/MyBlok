@@ -22,6 +22,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def blok
+    @user = current_user
+    render action: 'blok'
+  end
+
   def show
   end
 
@@ -36,6 +41,7 @@ class UsersController < ApplicationController
       redirect_to(root_path)
     end
   end
+
 
 private
   def user_deets

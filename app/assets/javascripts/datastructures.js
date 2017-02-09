@@ -144,4 +144,12 @@ $(document).ready(function(){
     }
     $("#locker-display").removeClass("hidden");
   });
+
+  //Below this line there is the javascript to handle tossing personal info to the blockchain, along with
+  //and then assigning the personal id to the user in the database.
+
+  $('#creating_user').on("submit", function(event){
+    event.preventDefault();
+
+  })
 });
