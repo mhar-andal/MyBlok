@@ -128,10 +128,8 @@ $(document).ready(function(){
   $("#user-id-input").on("submit", function(event){
     event.preventDefault();
     var userID = $("#personalID").val();
-    console.log(userID);
     var lockerArray = [];
     var numLockers = contract.returnLockers(userID, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
-    console.log(numLockers);
     for (var i = 1; i <= numLockers; i++){
       var feederArray = [];
       var dataType = ETHEREUM_CLIENT.toAscii(contract.returnLockerType(userID, i, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000}));
@@ -141,9 +139,9 @@ $(document).ready(function(){
       feederArray.push(signifier);
       lockerArray.push(feederArray);
     }
-    console.log(lockerArray);
     for(var i = 0 ; i<lockerArray.length; i++){
-      $("#locker-display").append("<p>"+lockerArray[i][0]+". "+ lockerArray[i][1]+ "</p> <br> <p>"+lockerArray[i][2] +"</p>");
+      $("#locker-display").append("<p>"+lockerArray[i][0]+". "+ lockerArray[i][1]+ "</p> <p>"+lockerArray[i][2] +"</p><br>");
     }
-  })
+    $("#locker-display").removeClass("hidden");
+  });
 });
