@@ -150,6 +150,27 @@ $(document).ready(function(){
 
   $('#creating_user').on("submit", function(event){
     event.preventDefault();
-
-  })
+    var firstName = $("#person_fn").val();
+    var lastName = $("#person_ln").val();
+    var ident = getID();
+    var pubKey = $("#pub-key").html();
+    console.log(pubKey);
+    saveID(ident);
+    $("a").removeClass("hidden");
+    contract.newPerson(firstName, lastName, pubKey, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
+  });
 });
+// helper methods for getting the personal ID
+
+var getID = function(){
+  var output = contract.numPersons( {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
+  return output.c[0];
+};
+//
+var saveID = function(identification){
+  $.ajax({
+    method: "post",
+    url: "/users/ID",
+    data: {data: identification}
+  });
+};
