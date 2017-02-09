@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :sessions, except: [:index, :edit, :update, :destroy]
   post '/sessions' => "sessions#create"
   delete '/sessions' => "sessions#destroy"
-  get '/contract/new' => "contract#new"
+  get '/contract/store' => "contract#store"
   get '/contract' => "contract#index"
   get '/sessions/login' => "sessions#new"
   get '/contract/config' => "contract#config"

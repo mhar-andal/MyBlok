@@ -79,4 +79,12 @@ $(document).ready(function(){
     var stringified = JSON.stringify(cardObj);
     contract.newDataLocker(cardObj.dataType, cardObj.signifier, stringified,18,{from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
   });
+//below is for the index contract page.  It parses the object from the database and holds it as an obj.
+  $("#data-retrieval").on("submit", function(event){
+    event.preventDefault();
+    var userID = $("#personalID").val();
+    var lockerID = $("#LockerID").val();
+    var object = contract.openLocker(userID, lockerID, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000})
+    var parsed = JSON.parse(ETHEREUM_CLIENT.toAscii(object[2]));
+  })
 });
