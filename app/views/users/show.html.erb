@@ -1,0 +1,21 @@
+<h1 class="header">Display all lockers</h1>
+<form id="user-id-input" class="form header" action="/users" method="post">
+   <fieldset>
+    <legend>Input UserID</legend>
+
+    <p class="personalID">
+        <input type="text" name="locker[personalID]" id="personalID" required>
+        <label for="bank_name">Personal ID</label>
+    </p>
+
+
+    <p class="submit">
+        <input id="save" type="submit" value="Save">
+    </p>
+
+   </fieldset>
+</form>
+
+<div id="locker-display" class="pop-up hidden">
+  <h3>Contents of Lockers</h3>
+</div>

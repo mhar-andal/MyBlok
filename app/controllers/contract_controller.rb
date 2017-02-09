@@ -9,4 +9,5 @@ class ContractController < ApplicationController
 
   end
 
+
 end

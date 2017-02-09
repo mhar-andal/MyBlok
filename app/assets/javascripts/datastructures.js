@@ -49,9 +49,10 @@ var IDCard  = function(sig, IDType, expDate, licNum){
   this.expDate = expDate,
   this.licNum = licNum
 }
-// This is the javascript handling for the objects.  Each form submission will take the info, shove it into the
-// above datastructures, jsonify them, then toss them to the block chain
+
 $(document).ready(function(){
+  // This is the javascript handling for the objects.  Each form submission will take the info, shove it into the
+  // above datastructures, jsonify them, then toss them to the block chain
   $("#bank-account").on("submit", function(event){
     event.preventDefault();
     var accountObj = new Account($("#bank-sig").val(), $("#bank_name").val(), $("#account_number").val(), $("#routing_number").val());
@@ -86,5 +87,61 @@ $(document).ready(function(){
     var lockerID = $("#LockerID").val();
     var object = contract.openLocker(userID, lockerID, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000})
     var parsed = JSON.parse(ETHEREUM_CLIENT.toAscii(object[2]));
-  })
+    if( parsed.dataType === "Credit Card"){
+      $("#Card-display-type").html(parsed.dataType);
+      $("#Card-display-sig").html(parsed.signifier);
+      $("#Card-display-bank").html(parsed.bankName);
+      $("#Card-display-fullName").html(parsed.fullName);
+      $("#Card-display-issuer").html(parsed.cardIssuer);
+      $("#Card-display-number").html(parsed.cardNum);
+      $("#Card-display-securityCode").html(parsed.securityNum);
+      $("#Card-display-expDate").html(parsed.expDate);
+      $("#Card-display").removeClass("hidden");
+    }
+    else if (parsed.dataType === "Website Login"){
+      $("#Login-display-type").html(parsed.dataType);
+      $("#Login-display-siteName").html(parsed.siteName);
+      $("#Login-display-url").html(parsed.url);
+      $("#Login-display-userName").html(parsed.username);
+      $("#Login-display-password").html(parsed.password);
+      $("#Login-display").removeClass("hidden");
+    }
+    else if (parsed.dataType ==="Banking Account"){
+      $("#Account-display-type").html(parsed.dataType);
+      $("#Account-display-sig").html(parsed.signifier);
+      $("#Account-display-name").html(parsed.bankName);
+      $("#Account-display-routing").html(parsed.routingNum);
+      $("#Account-display-account").html(parsed.accountNum);
+      $("#Account-display").removeClass("hidden");
+    }
+    else if (parsed.dataType === "ID card"){
+      $("#ID-display-type").html(parsed.dataType);
+      $("#ID-display-sig").html(parsed.signifier);
+      $("#ID-display-idType").html(parsed.IDType);
+      $("#ID-display-expDate").html(parsed.expDate);
+      $("#ID-display-licNum").html(parsed.licNum);
+      $("#ID-display").removeClass('hidden');
+    }
+  });
+  //Below is the javascript for handling the display of all of a users lockers
+  //I feel like it will be a bit of a pain in the tookus.
+  $("#user-id-input").on("submit", function(event){
+    event.preventDefault();
+    var userID = $("#personalID").val();
+    var lockerArray = [];
+    var numLockers = contract.returnLockers(userID, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
+    for (var i = 1; i <= numLockers; i++){
+      var feederArray = [];
+      var dataType = ETHEREUM_CLIENT.toAscii(contract.returnLockerType(userID, i, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000}));
+      var signifier = ETHEREUM_CLIENT.toAscii(contract.returnLockerName(userID, i , {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000}));
+      feederArray.push(i);
+      feederArray.push(dataType);
+      feederArray.push(signifier);
+      lockerArray.push(feederArray);
+    }
+    for(var i = 0 ; i<lockerArray.length; i++){
+      $("#locker-display").append("<p>"+lockerArray[i][0]+". "+ lockerArray[i][1]+ "</p> <p>"+lockerArray[i][2] +"</p><br>");
+    }
+    $("#locker-display").removeClass("hidden");
+  });
 });
