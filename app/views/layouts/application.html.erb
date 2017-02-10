@@ -28,19 +28,6 @@
         <a href="/sessions/login"><button id="getstarted" type="button" class="btn btn-secondary btn-lg">EXISTING USER</button></a>
       </div>
       <% end %>
-      <% if logged_in %>
-      <div class="navbar">
-        <div class="links">
-          <ul>
-            <form action="/sessions" method="post">
-              <input type="hidden" name="_method" value="delete">
-              <input type="submit" value="logout">
-            </form>
-            <center><li><a href="/">Logout</a></li></center>
-          </uL>
-        </div>
-      </div>
-      <% end %>
     </div>
 
 

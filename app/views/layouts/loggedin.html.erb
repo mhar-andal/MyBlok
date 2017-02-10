@@ -10,7 +10,7 @@
 
   </head>
 
-  <body>
+  <body id="loggedinback">
   <div class="header-user">
     <div class="background-content">
       <a href="/"><img id="logo" src="/assets/mybloknew.png" /></a>
@@ -18,31 +18,15 @@
     <hr>
   </div>
 
-  <!-- <div class="user-content">
-    <div class="row">
-      <div class="col-md-12">
-        <button type="button" class="btn btn-default">Banking Accounts</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <button type="button" class="btn btn-default">Credit Cards</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <button type="button" class="btn btn-default">Identification Cards</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <button type="button" class="btn btn-default">Website Logins</button>
-      </div>
-    </div>
+  <div class="row lognav">
+    <span id="usernametitle">Welcome, <%= current_user.username %>
+    <form action="/sessions" method="post">
+      <input type="hidden" name="_method" value="delete">
+    <center><button id="logoutbutton" type="submit" class="btn btn-secondary btn-lg">Logout</button></center>
+  </form>
+  </div>
 
-  </div> -->
-
-<%= yield %>
+  <%= yield %>
   </body>
 
 </html>

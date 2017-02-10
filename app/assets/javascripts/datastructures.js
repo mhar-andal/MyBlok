@@ -5,8 +5,7 @@ var peopleContractABI =
 // var PeopleContract = ETHEREUM_CLIENT.eth.contract(peopleContractABI).at(peopleContractAddress)
 var address ='0xd32886d6f6d2b4261884a9912931f643afb83485'
 var contract = ETHEREUM_CLIENT.eth.contract(peopleContractABI).at(address)
-console.log(contract.openLocker(0, 1, {from: '0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1'}))
-admin = '0xa1e648cd37ee43591ab28a94972e88e909a41304'
+admin = '0xC9ed8beB26C74d73dCfb8B10d38c08B3F29256aD'
 ETHEREUM_CLIENT.eth.defaultAccount = ETHEREUM_CLIENT.eth.accounts[0]
 // This is the datastructures that will hold our information.
 // They will be JSONified and fed into the block chain, with the first two also called.
@@ -22,7 +21,6 @@ var Card = function(sig, bankName, fullName, cardIssuer, cardNum, securityNum, e
   this.cardNum = cardNum,
   this.securityNum = securityNum,
   this.expDate = expDate
-
 }
 
 
@@ -57,8 +55,15 @@ $(document).ready(function(){
     event.preventDefault();
     var accountObj = new Account($("#bank-sig").val(), $("#bank_name").val(), $("#account_number").val(), $("#routing_number").val());
     var parsed = JSON.stringify(accountObj);
+    var privkey = $("#privatekey").val();
+    var passphrase = $("#passphrase_field").val();
     var personalID = $(".personal-id").html();
-    contract.newDataLocker(accountObj.dataType, accountObj.signifier, parsed,personalID, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
+    var pubkey = $(".pubkey").html();
+    encrypt(privkey, passphrase, pubkey, parsed).then(function(encrypted) {
+      console.log(encrypted)
+      contract.newDataLocker(accountObj.dataType, accountObj.signifier, encrypted, personalID, {from: admin, gas:1000000000000});
+    })
+
   });
 
   $("#web-info").on("submit",function(event){
@@ -66,7 +71,7 @@ $(document).ready(function(){
     var loginObj = new Login($("#site_name").val(),$("#site_address").val(),$("#login").val(),$("#password").val())
     var stringified = JSON.stringify(loginObj);
     var personalID = $(".personal-id").html();
-    contract.newDataLocker(loginObj.siteName,loginObj.url, stringified, personalID, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
+    contract.newDataLocker(loginObj.siteName,loginObj.url, stringified, personalID, {from: admin, gas:1000000000000});
   });
 
   $("#ID-info").on("submit",function(event){
@@ -74,7 +79,7 @@ $(document).ready(function(){
     var IDObj = new IDCard($("#id_sig").val(), $("#id_name").val(), $("#id_number").val(),$("#exp_date").val())
     var stringified = JSON.stringify(IDObj);
     var personalID = $(".personal-id").html();
-    contract.newDataLocker(IDObj.dataType,IDObj.signifier, stringified, personalID, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
+    contract.newDataLocker(IDObj.dataType,IDObj.signifier, stringified, personalID, {from: admin, gas:10000000000000});
   });
 
   $("#creditcard").on("submit", function(event){
@@ -82,14 +87,14 @@ $(document).ready(function(){
     var cardObj = new Card($("#card_sig").val(), $("#issuing_bank_name").val(),$("#name_on_card").val(),$("#card_type").val(),$("#card_number").val(),$("#security_code").val(),$("#expiration_date").val());
     var stringified = JSON.stringify(cardObj);
     var personalID = $(".personal-id").html();
-    contract.newDataLocker(cardObj.dataType, cardObj.signifier, stringified,personalID,{from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
+    contract.newDataLocker(cardObj.dataType, cardObj.signifier, stringified,personalID,{from: admin, gas:10000000000000});
   });
 //below is for the index contract page.  It parses the object from the database and holds it as an obj.
   $("#data-retrieval").on("submit", function(event){
     event.preventDefault();
     var userID = $(".personal-id").html();
     var lockerID = $("#LockerID").val();
-    var object = contract.openLocker(userID, lockerID, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000})
+    var object = contract.openLocker(userID, lockerID, {from: admin, gas:10000000000000})
     var parsed = JSON.parse(ETHEREUM_CLIENT.toAscii(object[2]));
     if( parsed.dataType === "Credit Card"){
       $("#Card-display-type").html(parsed.dataType);
@@ -133,11 +138,11 @@ $(document).ready(function(){
     event.preventDefault();
     var userID = $("#personalID").val();
     var lockerArray = [];
-    var numLockers = contract.returnLockers(userID, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
+    var numLockers = contract.returnLockers(userID, {from: admin, gas:10000000000000});
     for (var i = 1; i <= numLockers; i++){
       var feederArray = [];
-      var dataType = ETHEREUM_CLIENT.toAscii(contract.returnLockerType(userID, i, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000}));
-      var signifier = ETHEREUM_CLIENT.toAscii(contract.returnLockerName(userID, i , {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000}));
+      var dataType = ETHEREUM_CLIENT.toAscii(contract.returnLockerType(userID, i, {from: admin, gas:10000000000000}));
+      var signifier = ETHEREUM_CLIENT.toAscii(contract.returnLockerName(userID, i , {from: admin, gas:10000000000000}));
       feederArray.push(i);
       feederArray.push(dataType);
       feederArray.push(signifier);
@@ -163,16 +168,16 @@ $(document).ready(function(){
     var lastName = $("#person_ln").val();
     var ident = getID();
     var pubKey = $("#pub-key").html();
-    console.log(pubKey);
     saveID(ident);
     $("a").removeClass("hidden");
-    contract.newPerson(firstName, lastName, pubKey, {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
+    contract.newPerson(firstName, lastName, pubKey, {from: admin, gas:100000000000});
+    $("#creating_user").replaceWith("<a href='/'><button id='login' type='button' class='btn btn-default'>Start Storing Information</button></a>")
   });
 });
 // helper methods for getting the personal ID
 
 var getID = function(){
-  var output = contract.numPersons( {from:"0xa49fb51f996b7ca3b0b77d34145b1bedde6100a1", gas:1000000000000});
+  var output = contract.numPersons( {from: admin, gas:10000000000});
   return output.c[0];
 };
 //
