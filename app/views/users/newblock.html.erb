@@ -1,30 +1,33 @@
-<h1 class="header">Please assign information to the blockchain</h1>
+<div class="setupblock"><center>
+<h1>Please assign information to the blockchain</h1>
 
 <form id="creating_user" class="form header" action="/users" method="post">
    <fieldset>
     <legend>New Locker Owner</legend>
 
-    <p class="First Name">
-        <input type="text" name="person[firstName]" id="person_fn" required>
-        <label for="bank_name">First Name</label>
-    </p>
-
-    <p class="LockerID">
-        <input type="text" name="person[lastName]" id="person_ln" required>
-        <label for="bank_name">Last Name</label>
-    </p>
-
+    <div class="form-group">
+      <p class="First Name">
+        <label for="bank_name">First Name: </label>
+          <input class="form-control" type="text" name="person[firstName]" id="person_fn" required>
+      </p>
+    </div>
+    <div class="form-group">
+      <p class="LockerID">
+        <label for="bank_name">Last Name: </label>
+          <input class="form-control" type="text" name="person[lastName]" id="person_ln" required>
+      </p>
+    </div>
 
     <input type="hidden" name="person[pubKey]" id="person-pubKey" value='<%=@user.public_key%>' required>
 
 
     <p class="submit">
-        <input id="save" type="submit" value="Save">
+        <button id="login" type="submit" class="btn btn-default">Save</button>
     </p>
 
    </fieldset>
 </form>
 
-<p id=pub-key class="hidden"> <%=@user.public_key%></p>
+<p id="pub-key" class="hidden"> <%=@user.public_key%></p>
 
-<a href="/contract/config" class="hidden">Move on</a>
+</center></div>

@@ -1,0 +1,234 @@
+<div class="user-content">
+  <center>
+    <h3><b>IMPORTANT: Please input your private key and passphrase prior to submitting your information</b></h3>
+    <label>Passphrase: </label>
+    <input type="password" id="passphrase_field" class="form-control" required>
+  </br>
+    <label>Private Key: </label></br>
+    <textarea id="privatekey"></textarea></center>
+  <div class="row">
+    <div class="row">&nbsp;</div>
+    <div class="col-md-12">
+      <button type="button" class="btn btn-default">Store Banking Account</button>
+    </div>
+    <div class="banking">
+      <div class="row">&nbsp;</div>
+      <form id="bank-account">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Name for Account: </label>
+          <input type="text" id="bank-sig" class="form-control" name="user[username]" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Bank Name: </label>
+          <input type="text" id="bank_name" class="form-control" name="user[username]" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Account Number: </label>
+          <input type="text" id="account_number" class="form-control" name="user[username]" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Routing Number: </label>
+          <input id="routing_number" type="text" class="form-control" name="user[username]" required>
+        </div>
+        <center><button id="save" type="submit" class="btn btn-default">Store</button></center>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <button type="button" class="btn btn-default">Store Credit Card</button>
+    </div>
+    <div class="banking">
+      <div class="row">&nbsp;</div>
+      <form id="#bank-accou">
+        <div class="form-group">
+          <label for="exampleInputEmail1">What card is this? (Visa, Mastercard, Discover, American Express): </label>
+          <input type="text" class="form-control" name="user[username]" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Issuing Bank: </label>
+          <input type="text" class="form-control" name="user[username]" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Name On Card: </label>
+          <input type="text" class="form-control" name="user[username]" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Card Number: </label>
+          <input type="text" class="form-control" name="user[username]" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Expiration Date: </label>
+          <input type="text" class="form-control" name="user[username]" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Security Code: </label>
+          <input type="text" class="form-control" name="user[username]" required>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <button type="button" class="btn btn-default">Store Identification Card</button>
+    </div>
+    <div class="banking">
+      <div class="row">&nbsp;</div>
+      <form id="#bank-accou">
+        <div class="form-group">
+          <label for="exampleInputEmail1">ID Card Name: </label>
+          <input type="text" class="form-control" name="user[username]" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Type of ID?: </label>
+          <input type="text" class="form-control" name="user[username]" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Type of ID?: </label>
+          <input type="text" class="form-control" name="user[username]" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Expiration Date: </label>
+          <input type="text" class="form-control" name="user[username]" required>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <button type="button" class="btn btn-default">Store Website Login</button>
+    </div>
+    <div class="banking">
+      <div class="row">&nbsp;</div>
+      <form id="#bank-accou">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Name for Account: </label>
+          <input type="text" class="form-control" name="user[username]" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Bank Name: </label>
+          <input type="text" class="form-control" name="user[username]" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Account Number: </label>
+          <input type="text" class="form-control" name="user[username]" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Routing Number: </label>
+          <input type="text" class="form-control" name="user[username]" required>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <center><h1>Data Retrieval</h1>
+
+
+  <form id="data-retrieval" class="form header" action="/users" method="post">
+     <fieldset>
+      <legend>Open Data Locker</legend>
+
+      <p class="LockerID">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Locker Number: </label>
+          <input id="LockerID" type="text" class="form-control" name="locker[lockerID]"></input>
+        </div>
+      </p>
+
+
+      <p class="submit">
+        <center><button id="save" type="submit" class="btn btn-default">Open</button></center>
+      </p>
+
+     </fieldset>
+  </form>
+
+  <!-- <div id="data-display" class="pop-up"> -->
+
+    <div id= "ID-display" class="pop-up hidden">
+      <p>Data Type</p>
+      <p id="ID-display-type"></p>
+
+      <p>Name</p>
+      <p id="ID-display-sig"></p>
+
+      <p>Form of ID</p>
+      <p id="ID-display-idType"></p>
+
+      <p>Expiration Date</p>
+      <p id="ID-display-expDate"></p>
+
+      <p>Liscense Number</p>
+      <p id="ID-display-licNum"></p>
+    </div>
+
+    <div id= "Account-display" class="pop-up hidden">
+      <p>Data Type</p>
+      <p id="Account-display-type"></p>
+
+      <p>Name</p>
+      <p id="Account-display-sig"></p>
+
+      <p>Bank Name</p>
+      <p id="Account-display-name"></p>
+
+      <p>Routing Number</p>
+      <p id="Account-display-routing"></p>
+
+      <p>Account Number</p>
+      <p id="Account-display-account"></p>
+    </div>
+
+    <div id="Login-display" class="pop-up hidden">
+      <p>Data Type</p>
+      <p id="Login-display-type"></p>
+
+      <p>Website Name</p>
+      <p id="Login-display-siteName"></p>
+
+      <p>Website URL</p>
+      <p id="Login-display-url"></p>
+
+      <p>Username</p>
+      <p id="Login-display-userName"></p>
+
+      <p>Password</p>
+      <p id="Login-display-password"></p>
+    </div>
+
+    <div id="Card-display" class="pop-up hidden">
+      <p>Data Type</p>
+      <p id="Card-display-type"></p>
+
+      <p>Name</p>
+      <p id="Card-display-sig"></p>
+
+      <p>Bank Name</p>
+      <p id="Card-display-bank"></p>
+
+      <p>Full Name on Card</p>
+      <p id="Card-display-fullName"></p>
+
+      <p>Card Type</p>
+      <p id="Card-display-issuer"></p>
+
+      <p>Card Number</p>
+      <p id="Card-display-number"></p>
+
+      <p>Security Code</p>
+      <p id="Card-display-securityCode"></p>
+
+      <p>Expiration Date</p>
+      <p id="Card-display-expDate"></p>
+    </div>
+  </div>
+  </center>
+</div>
+<p class="personal-id hidden"><%=current_user.block_id%></p>
+<p class="pubkey hidden"><%=current_user.public_key%></p>

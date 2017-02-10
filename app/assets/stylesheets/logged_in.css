@@ -1,0 +1,22 @@
+.lognav {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#usernametitle {
+  float: left !important;
+}
+
+#logoutbutton {
+  background-color: black;
+  color: white;
+  width: 90px;
+  height: 40px
+}
+
+#privatekey {
+  width: 200px;
+  height: 50px;
+}

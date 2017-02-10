@@ -18,18 +18,13 @@ function encrypt(privkey, passphrase, pubkey, data) {
   var privKeyDE = privateKey;
   privKeyDE.keys[0].decrypt(passphrase);
   var options = {
-      data: JSON.stringify(data),                           // input as String (or Uint8Array)
-      encrypted: "",
+      data: data,                           // input as String (or Uint8Array)
       publicKeys: openpgp.key.readArmored(pubkey).keys,  // for encryption
       privateKeys: privKeyDE.keys[0] // for signing (optional)
   };
-
-   openpgp.encrypt(options).then(function(ciphertext) {
-        $$whatever = ciphertext.data; // '-----BEGIN PGP MESSAGE ... END PGP MESSAGE-----'
-    })
-
-    return $$whatever;
+   return openpgp.encrypt(options);
 }
+
 
 
 function decrypt(privkey, passphrase, pubkey, encrypted) {
