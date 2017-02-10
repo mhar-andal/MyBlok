@@ -138,9 +138,10 @@ $(document).ready(function(){
     var pubkey = $(".pubkey").html();
     var object = contract.openLocker(userID, lockerID, {from: admin, gas:10000000000000})
     console.log(object)
-    decrypt(privkey, passphrase, pubkey, object[2]).then(function(encrypted) {
+    var data_stuff = ETHEREUM_CLIENT.toAscii(object[2]);
+    decrypt(privkey, passphrase, pubkey, data_stuff).then(function(encrypted) {
       console.log(encrypted)
-      var parsed = JSON.parse(ETHEREUM_CLIENT.toAscii(encypted));
+      var parsed = JSON.parse(encypted);
       getInfo(parsed);
     })
 
