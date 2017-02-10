@@ -38,8 +38,5 @@ function decrypt(privkey, passphrase, pubkey, encrypted) {
     publicKeys: openpgp.key.readArmored(pubkey).keys,    // for verification (optional)
     privateKey: privKeyDE.keys[0]// for decryption
   };
-  decrypted = openpgp.decrypt(options).then(function(plaintext) {
-    $$whatever2 = plaintext.data;
-  })
-  return $$whatever2;
+  return openpgp.decrypt(options);
 };

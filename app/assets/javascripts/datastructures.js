@@ -48,6 +48,44 @@ var IDCard  = function(sig, IDType, expDate, licNum){
   this.licNum = licNum
 }
 
+function getInfo(parsed) {
+  if( parsed.dataType === "Credit Card"){
+    $("#Card-display-type").html(parsed.dataType);
+    $("#Card-display-sig").html(parsed.signifier);
+    $("#Card-display-bank").html(parsed.bankName);
+    $("#Card-display-fullName").html(parsed.fullName);
+    $("#Card-display-issuer").html(parsed.cardIssuer);
+    $("#Card-display-number").html(parsed.cardNum);
+    $("#Card-display-securityCode").html(parsed.securityNum);
+    $("#Card-display-expDate").html(parsed.expDate);
+    $("#Card-display").removeClass("hidden");
+  }
+  else if (parsed.dataType === "Website Login"){
+    $("#Login-display-type").html(parsed.dataType);
+    $("#Login-display-siteName").html(parsed.siteName);
+    $("#Login-display-url").html(parsed.url);
+    $("#Login-display-userName").html(parsed.username);
+    $("#Login-display-password").html(parsed.password);
+    $("#Login-display").removeClass("hidden");
+  }
+  else if (parsed.dataType ==="Banking Account"){
+    $("#Account-display-type").html(parsed.dataType);
+    $("#Account-display-sig").html(parsed.signifier);
+    $("#Account-display-name").html(parsed.bankName);
+    $("#Account-display-routing").html(parsed.routingNum);
+    $("#Account-display-account").html(parsed.accountNum);
+    $("#Account-display").removeClass("hidden");
+  }
+  else if (parsed.dataType === "ID card"){
+    $("#ID-display-type").html(parsed.dataType);
+    $("#ID-display-sig").html(parsed.signifier);
+    $("#ID-display-idType").html(parsed.IDType);
+    $("#ID-display-expDate").html(parsed.expDate);
+    $("#ID-display-licNum").html(parsed.licNum);
+    $("#ID-display").removeClass('hidden');
+  }
+}
+
 $(document).ready(function(){
   // This is the javascript handling for the objects.  Each form submission will take the info, shove it into the
   // above datastructures, jsonify them, then toss them to the block chain
@@ -92,45 +130,20 @@ $(document).ready(function(){
 //below is for the index contract page.  It parses the object from the database and holds it as an obj.
   $("#data-retrieval").on("submit", function(event){
     event.preventDefault();
+    console.log("GETTING DATA")
     var userID = $(".personal-id").html();
     var lockerID = $("#LockerID").val();
+    var privkey = $("#privatekey").val();
+    var passphrase = $("#passphrase_field").val();
+    var pubkey = $(".pubkey").html();
     var object = contract.openLocker(userID, lockerID, {from: admin, gas:10000000000000})
-    var parsed = JSON.parse(ETHEREUM_CLIENT.toAscii(object[2]));
-    if( parsed.dataType === "Credit Card"){
-      $("#Card-display-type").html(parsed.dataType);
-      $("#Card-display-sig").html(parsed.signifier);
-      $("#Card-display-bank").html(parsed.bankName);
-      $("#Card-display-fullName").html(parsed.fullName);
-      $("#Card-display-issuer").html(parsed.cardIssuer);
-      $("#Card-display-number").html(parsed.cardNum);
-      $("#Card-display-securityCode").html(parsed.securityNum);
-      $("#Card-display-expDate").html(parsed.expDate);
-      $("#Card-display").removeClass("hidden");
-    }
-    else if (parsed.dataType === "Website Login"){
-      $("#Login-display-type").html(parsed.dataType);
-      $("#Login-display-siteName").html(parsed.siteName);
-      $("#Login-display-url").html(parsed.url);
-      $("#Login-display-userName").html(parsed.username);
-      $("#Login-display-password").html(parsed.password);
-      $("#Login-display").removeClass("hidden");
-    }
-    else if (parsed.dataType ==="Banking Account"){
-      $("#Account-display-type").html(parsed.dataType);
-      $("#Account-display-sig").html(parsed.signifier);
-      $("#Account-display-name").html(parsed.bankName);
-      $("#Account-display-routing").html(parsed.routingNum);
-      $("#Account-display-account").html(parsed.accountNum);
-      $("#Account-display").removeClass("hidden");
-    }
-    else if (parsed.dataType === "ID card"){
-      $("#ID-display-type").html(parsed.dataType);
-      $("#ID-display-sig").html(parsed.signifier);
-      $("#ID-display-idType").html(parsed.IDType);
-      $("#ID-display-expDate").html(parsed.expDate);
-      $("#ID-display-licNum").html(parsed.licNum);
-      $("#ID-display").removeClass('hidden');
-    }
+    console.log(object)
+    decrypt(privkey, passphrase, pubkey, object[2]).then(function(encrypted) {
+      console.log(encrypted)
+      var parsed = JSON.parse(ETHEREUM_CLIENT.toAscii(encypted));
+      getInfo(parsed);
+    })
+
   });
   //Below is the javascript for handling the display of all of a users lockers
   //I feel like it will be a bit of a pain in the tookus.
