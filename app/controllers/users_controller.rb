@@ -43,9 +43,8 @@ class UsersController < ApplicationController
 
   def ID
     @user = current_user
-    p @user.block_id
     @user.block_id =  params["data"].to_i
-    p @user.block_id
+    @user.save
   end
 
   def insert_publickey

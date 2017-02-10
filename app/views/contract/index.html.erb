@@ -5,11 +5,6 @@
    <fieldset>
     <legend>Open Data Locker</legend>
 
-    <p class="personalID">
-        <input type="text" name="locker[personalID]" id="personalID" required>
-        <label for="bank_name">Personal ID</label>
-    </p>
-
     <p class="LockerID">
         <input type="text" name="locker[lockerID]" id="LockerID" required>
         <label for="bank_name">Locker Number</label>
@@ -23,7 +18,8 @@
    </fieldset>
 </form>
 
-
+<a href="/" id="hide-that-stuff">Hide those forms and try around</a>
+<p class="personal-id hidden"><%=@user.block_id%></p>
 <!-- <div id="data-display" class="pop-up"> -->
 
   <div id= "ID-display" class="pop-up hidden">
